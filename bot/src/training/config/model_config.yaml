@@ -1,0 +1,11 @@
+model_name: 'mistralai/Mistral-7B-Instruct-v0.2'
+tokenizer_name: 'mistralai/Mistral-7B-Instruct-v0.2'
+
+max_seq_length: 256
+batch_size: 1
+gradient_accumulation: 4
+learning_rate: 0.0002
+num_epochs: 3
+
+dataset_path: 'bot/data/processed/rick_lines.jsonl'
+output_dir: 'bot/model/picklebot-lora-v2'
