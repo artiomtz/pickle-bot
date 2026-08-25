@@ -1,0 +1,21 @@
+/data/
+/docs/
+
+# Model checkpoints
+**/checkpoint-*/
+**/optimizer.pt
+**/scheduler.pt
+**/rng_state.pth
+**/training_args.bin
+**/trainer_state.json
+
+# HuggingFace cache
+~/.cache/
+huggingface/
+hf_cache/
+cache/
+
+# Large model files
+**/model.safetensors
+**/pytorch_model.bin
+*.bin
