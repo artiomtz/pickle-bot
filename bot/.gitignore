@@ -1,5 +1,6 @@
 /data/
 /docs/
+model/picklebot-lora-v2/
 
 # Model checkpoints
 **/checkpoint-*/
