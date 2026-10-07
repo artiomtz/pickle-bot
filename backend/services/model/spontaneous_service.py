@@ -1,9 +1,7 @@
 import random
 
 from backend.config import settings
-from backend.services.memory_service import memory_service
 from backend.services.model.model_service import get_model
-from backend.types import Role, User
 from backend.utils.logger_utils import logger
 from backend.utils.text_utils import extract_reply
 
@@ -55,8 +53,5 @@ def generate_spontaneous_message(chat_id: str) -> str:
 
     reply = extract_reply(full_text)
     logger.info("Spontaneous message: %s", reply)
-
-    logger.info("Spontaneous message: Saving...")
-    memory_service.add_message(chat_id=chat_id, user_id=User.RICK.value, role=Role.RICK, content=reply)
 
     return reply
