@@ -5,11 +5,11 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     is_dev: bool = False
     version: str = "0.1.0"
-    timezone: str = "America/Toronto"
-    model_config = ConfigDict(env_file=".env")
+    model_config = ConfigDict(env_file=".env", extra="ignore")
     lora_adapter_path: str = "bot/model/picklebot-lora-v1"
     base_model_name: str = "mistralai/Mistral-7B-Instruct-v0.2"
 
+    timezone: str = "America/Toronto"
     auth_key: str | None = None
     hf_token: str | None = None
     web_token: str | None = None

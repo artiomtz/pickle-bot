@@ -8,6 +8,7 @@ from backend.schemas import ChatRequest, ChatResponse
 from backend.services.chat_service import generate_reply
 from backend.services.memory_service import memory_service
 from backend.services.rate_limiter_service import rate_limiter
+from backend.utils.api_utils import rows_to_messages
 from backend.utils.logger_utils import logger
 from backend.utils.text_utils import generate_id
 from backend.utils.validation_utils import validate_id, validate_days, validate_limit, validate_since
@@ -91,7 +92,10 @@ def get_messages_since(chat_id: str, since: str, _auth=Depends(verify_auth)):
     except ValueError as e:
         logger.info("invalid chat id or since values: %s", e)
         raise HTTPException(status_code=400, detail="Invalid chat id or since arguments")
-    messages = memory_service.get_messages_since(chat_id, since)
+
+    rows = memory_service.get_messages_since(chat_id, since)
+    messages = rows_to_messages(rows)
+
     return {"messages": messages}
 
 
@@ -111,7 +115,9 @@ def get_messages(chat_id: str, limit: Optional[int] = None, _auth=Depends(verify
         raise HTTPException(status_code=400, detail="Invalid request parameters")
 
     rows = memory_service.get_messages(chat_id, limit=limit)
-    return {"messages": rows}
+    messages = rows_to_messages(rows)
+
+    return {"messages": messages}
 
 
 @app.post(

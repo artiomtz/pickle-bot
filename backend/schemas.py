@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Optional
 
 from pydantic import BaseModel, field_validator
@@ -11,6 +12,13 @@ class ChatResponse(BaseModel):
     chat_id: str
     user_id: str
     reply: str
+
+
+class SinceResponse(BaseModel):
+    user_id: str
+    role: str
+    content: str
+    created_at: datetime
 
 
 class ChatRequest(BaseModel):
