@@ -73,7 +73,7 @@ def test_messages_since_success(monkeypatch):
         )
 
         assert response.status_code == 200
-        assert response.json()["messages"][0][2] == "hello"
+        assert response.json()["messages"][0]["content"] == "hello"
 
 
 def test_messages_limit_validation(monkeypatch):
@@ -99,7 +99,7 @@ def test_messages_success(monkeypatch):
         )
 
         assert response.status_code == 200
-        assert response.json()["messages"][0][2] == "hello"
+        assert response.json()["messages"][0]["content"] == "hello"
 
 
 @patch("backend.main.generate_reply")
